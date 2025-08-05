@@ -134,7 +134,7 @@ input[type=number] {
 }
 
 #bmi-results-value {
-    font-size: 56px;
+    font-size: clamp(10px, 56px, 70px);
     display: flex;
     width: 150px;
     min-height: 150px !important;
