@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-au">
 <head>
+    <meta name="google-site-verification" content="Lp5PhHo6F18O31t_LtBlwvHJBjdvZYPmYCRf7fEPuTI" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BMI Calculator</title>
@@ -13,9 +14,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Mozilla+Text:wght@200..700&family=Nata+Sans:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="menubar">
-        <p>BMI Calculator</p>
+    <div id="disclaimer">
+        <p>Traditional BMI Calculator is a tool used for screening and is not intended to be used for diagnosis.</p>
     </div>
+    <div id="menubar">
+        <p>Placeholder</p>
+    </div>
+    <noscript>
+        <div id="noscript-warning">
+            <p>This site requires javascript to run. Please enable javascript and refresh to continue.</p>
+        </div>
+    </noscript>
     <div id="contents">
     <div id="firstrow">
         <div id="prompt">
@@ -27,7 +36,8 @@
         </div>
         <div id="settings">
             <div id="settings-title">
-                <p>Settings</p>
+                <p>Calculator Settings</p>
+                <label for="unit">Unit:</label>
                 <select id="unit">
                     <option value="metric">Metric</option>
                     <option value="imperial">Imperial</option>
@@ -40,9 +50,14 @@
             <div id="results-title">
                 <p>Results</p>
             </div>
-            <div id="bmi-result">
+            <div id="results-wrapper">
+                <div id="bmi-result">
                 <p class="static">Your BMI is:</p>
-                <p id="bmi-results-value">0</p>
+                <p id="bmi-results-value">Waiting for Input</p>
+            </div>
+            <div id="conclusion">
+                <p class="static">According to calculations, you are <span id="weight-identifier">...</span></p>
+            </div>
             </div>
         </div>
     </div>
