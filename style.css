@@ -1,0 +1,172 @@
+#menubar {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    font-family: 'Mozilla Text', sans-serif;
+    height: 55px;
+    background-color: #ffffff;
+}
+
+#menubar p {
+    padding: 15px;
+    font-size: 22px;
+}
+
+body {
+    background-color: rgb(212, 212, 212);
+    margin: 0px;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+#prompt {
+    display: flex;
+    height: 127px;
+    width: 100%;
+    flex-direction: column;
+    margin: 10px 5px 10px 10px;
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+#settings-title p {
+    font-family: 'Mozilla Text', sans-serif;
+    margin: 15px 15px 8px 15px;
+    font-size: 18px;
+}
+
+
+#settings {
+    display: flex;
+    height: 127px;
+    width: 100%;
+    margin: 10px 10px 10px 5px;
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+#firstrow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#contents {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+#results {
+    display: flex;
+    height: 227px;
+    width: 100%;
+    margin: 0px 10px 10px 10px;
+    border-radius: 10px;
+    flex-direction: column;
+    background-color: #ffffff;
+}
+
+#results-title p {
+    font-family: 'Mozilla Text', sans-serif;
+    margin: 15px 15px 8px 15px;
+    font-size: 18px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#secondrow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+#prompt-title p {
+    font-family: 'Mozilla Text', sans-serif;
+    margin: 15px 15px 8px 15px;
+    font-size: 18px;
+}
+
+input[type=number] {
+    width: 200px;
+    padding: 5px;
+    height: 30px;
+    margin: 0px 0px 7px 15px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    font-family: 'Mozilla Text', sans-serif;
+    font-size: 18px;
+    box-sizing: border-box;
+    border: solid 1px #ccc;
+}
+
+
+#unit {
+    width: 200px;
+    padding: 5px;
+    height: 35px;
+    margin: 0px 0px 7px 15px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    font-family: 'Mozilla Text', sans-serif;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+#bmi-result {
+    display: flex;
+    font-family: 'Mozilla Text', sans-serif;
+    height: 150px;
+    border-radius: 10px;
+    width: 150px;
+    flex-direction: column;
+    margin: 10px 10px 10px 20px;
+    background-color: #ededed;
+}
+
+#bmi-result > .static {
+    padding-left: 15px;
+    position: absolute;
+}
+
+#bmi-results-value {
+    font-size: 56px;
+    display: flex;
+    width: 150px;
+    min-height: 150px !important;
+    align-items: center;
+    transform: translate(0, -20px);
+    align-self: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #333;
+    margin-top: 20px;
+}
+
+@media (max-width: 500px) {
+    #menubar p {
+        padding: 15px;
+        font-size: 28px;
+    }
+    #prompt {
+        width: calc(100% - 20px);
+        margin: 10px 10px 5px 10px;
+    }
+    #settings {
+        width: calc(100% - 20px);
+        margin: 5px 10px 5px 10px;
+    }
+    #firstrow {
+        flex-direction: column;
+    }
+    #menubar {
+        height: 75px;
+    }
+    #results {
+        margin: 5px 10px 10px 10px;
+    }
+}
