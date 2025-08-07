@@ -15,16 +15,18 @@
 </head>
 <body>
     <div id="disclaimer">
-        <p>Traditional BMI Calculator is a tool used for screening and is not intended to be used for diagnosis.</p>
+        <p>This calculator is for informational purposes only and does not constitute medical advice. Always consult a qualified healthcare provider for personalized guidance.</p>
     </div>
     <div id="menubar">
-        <p>Placeholder</p>
+        <p>BMI Calculator</p>
     </div>
     <noscript>
         <div id="noscript-warning">
             <p>This site requires javascript to run. Please enable javascript and refresh to continue.</p>
         </div>
     </noscript>
+    <p id="description">
+Using your height and weight, you can quickly determine your body fat percentage with this BMI (Body Mass Index) calculator. Your results are categorised into four standard BMI ranges: underweight, normal weight, overweight, and obese. Please be aware that the results of the BMI calculator is only a general recommendation and may not be an accurate indicator of health for people with certain medical conditions, children, older adults, or those with a lot of muscle. For individualised guidance, always seek the advice of a healthcare professional.
     <div id="contents">
     <div id="firstrow">
         <div id="prompt">
@@ -56,12 +58,59 @@
                 <p id="bmi-results-value">Waiting for Input</p>
             </div>
             <div id="conclusion">
-                <p class="static">According to calculations, you are <span id="weight-identifier">...</span></p>
+                <p class="static"><span id="calculation_sentence">According to calculations, you are</span> <span id="weight-identifier">...</span></p>
             </div>
             </div>
         </div>
     </div>
     </div>
+    <div id="thirdrow">
+    <div id="truth_table">
+        <table id="bmi-table">
+            <thead>
+                <tr>
+                    <th class="left">BMI Range</th>
+                    <th class="right">Weight Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Under 18.5</td>
+                    <td style="border-right: none;">Underweight</td>
+                </tr>
+                <tr>
+                    <td>18.5 - 24.9</td>
+                    <td style="border-right: none;">Normal weight</td>
+                </tr>
+                <tr>
+                    <td>25.0 - 29.9</td>
+                    <td style="border-right: none;">Overweight</td>
+                </tr>
+                <tr>
+                    <td style="border-bottom: none;">30.0 - 34.9</td>
+                    <td style="border-bottom: none; border-right: none;">Obesity Class 1</td>
+                </tr>
+                <tr>
+                    <td style="border-bottom: none;">35.0 - 39.9</td>
+                    <td style="border-bottom: none; border-right: none;">Obesity Class 2</td>
+                </tr>
+                <tr>
+                    <td style="border-bottom: none;">40.0 and above</td>
+                    <td style="border-bottom: none; border-right: none;">Obesity Class 3</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <h3>BMI Truth Table</h3>
+        <p>The BMI (Body mass index) truth table provides a standard list of weight statuses based on BMI values. It helps you quickly identify whether your BMI falls within a healthy range or indicates potential health risks. This table is accurate for those 20 or older. Each BMI range corresponds to a category, from underweight to obesity, and reflects general health risk levels associated with weight. While this is a BMI calculator that serves information, it does not reflect the other factors of mass in your body, e.g. muscle mass, bone density, or fat distribution, so it should be considered along with other health indicators.</p>
+    </div>
+    </div>
+    <!--<div id="information">
+        <h2>What is BMI?</h2>
+        <p>A popular measure that calculates body fat according to height and weight is the body mass index calculator, or BMI calculator. It can indicate possible health hazards associated with being underweight, overweight, or obese, as well as help determine whether a person is within a healthy weight range.</p>
+        <p>Although BMI is not a perfect metric, e.g. does not take into consideration bone density, muscle mass, or the distribution of fat, it is still a helpful screening tool for evaluating overall healthcare professional.</p>
+    </div>-->
     <a href="https://docs.google.com/forms/d/e/1FAIpQLScDPROCvYMEPjvWvIFCUYrTuX-imn3prUCJd84Rm8uEttPmEg/viewform?usp=sharing&ouid=101002814000643322588">Give us feedback here!</a>
     <a href="privacypolicy.html">Privacy Policy</a>
 </body>

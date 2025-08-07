@@ -1,9 +1,16 @@
+const sessionStorage = window.sessionStorage;
+
+if (!sessionStorage.getItem("played")) {
+    sessionStorage.setItem("played", false);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     let unitSelect = document.querySelector("#unit");
     let weightInput = document.querySelector("#weight");
     let heightInput = document.querySelector("#height");
     let bmiResultsValue = document.querySelector("#bmi-results-value");
     let weightIdentifier = document.querySelector("#weight-identifier");
+    let calculationSentence = document.querySelector("#calculation_sentence");
     unitSelect.addEventListener("change", () => {
         if (unitSelect.value === 'metric') {
             weightInput.placeholder = "Weight (kg)";
@@ -37,49 +44,59 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         roundedBmi = Math.round(bmi * 10) / 10; // Round to one decimal place
         bmiResultsValue.textContent = roundedBmi;
-        bmiResultsValue.style.fontSize = 110 / String(roundedBmi).length + "px";
+        bmiResultsValue.style.fontSize = Math.min(110 / String(roundedBmi).length, 70) + "px";
         if (bmi < 18.5) {
             weightIdentifier.style.color = "#c38902ff";
+            calculationSentence.textContent = "According to calculations, you are ";
             weightIdentifier.textContent = "underweight.";
         } else if (bmi >= 18.5 && bmi < 24.9) {
             weightIdentifier.style.color = "#00a600";
+            calculationSentence.textContent = "According to calculations, you are ";
             weightIdentifier.textContent = "healthy.";
         } else if (bmi >= 25 && bmi < 29.9) {
-            weightIdentifier.style.color = "#a70101ff";
+            weightIdentifier.style.color = "#a70101f3";
+            calculationSentence.textContent = "According to calculations, you are ";
             weightIdentifier.textContent = "overweight.";
-        } else if (bmi >= 30) {
+        } else if (bmi >= 30 && bmi < 34.9) {
+            weightIdentifier.style.color = "#c90000ff";
+            calculationSentence.textContent = "According to calculations, you have ";
+            weightIdentifier.textContent = "Obesity Class 1.";
+        } else if (bmi >= 35 && bmi < 39.9) {
+            weightIdentifier.style.color = "#e50000ff";
+            calculationSentence.textContent = "According to calculations, you have ";
+            weightIdentifier.textContent = "Obesity Class 2.";
+        } else if (bmi >= 40) {
             weightIdentifier.style.color = "#ff0000ff";
-            weightIdentifier.textContent = "obese.";
+            calculationSentence.textContent = "According to calculations, you have ";
+            weightIdentifier.textContent = "Obesity Class 3.";
         }
     }
 
     function changeUnit() {
         update();
-        if (unitSelect.value === 'metric') {
-            weightInput.value = '';
-            heightInput.value = '';
-            bmiResultsValue.textContent = "Waiting for Input";
-            weightIdentifier.textContent = "...";
-        } else if (unitSelect.value === 'imperial') {
-            weightInput.value = '';
-            heightInput.value = '';
-            bmiResultsValue.textContent = "Waiting for Input";
-            weightIdentifier.textContent = "...";
-        }
+        weightInput.value = '';
+        heightInput.value = '';
+        bmiResultsValue.textContent = "Waiting for Input";
+        weightIdentifier.textContent = "...";
+        weightIdentifier.style.color = "";
+        bmiResultsValue.style.fontSize = "15px";
     }
 
     weightInput.addEventListener("input", update);
     heightInput.addEventListener("input", update);
     unitSelect.addEventListener("change", changeUnit);
-
-    let disclaimer = document.querySelector("#disclaimer");
-    setTimeout(() => {
-        disclaimer.style.transform = "translateY(0px)";
-    }, 200);
-    setTimeout(() => {
-        disclaimer.style.transform = "translateY(-95px)";
-    }, 5000);
-    disclaimer.addEventListener("click", () => {
-         disclaimer.style.transform = "translateY(-95px)";
-    })
+    
+    if (sessionStorage.getItem("played") === "false") {
+        let disclaimer = document.querySelector("#disclaimer");
+        setTimeout(() => {
+            disclaimer.style.transform = "translateY(0px)";
+            sessionStorage.setItem("played", true);
+        }, 200);
+        setTimeout(() => {
+            disclaimer.style.transform = "translateY(-95px)";
+        }, 5000);
+        disclaimer.addEventListener("click", () => {
+             disclaimer.style.transform = "translateY(-95px)";
+        })
+    }
 });
