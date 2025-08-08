@@ -262,6 +262,11 @@ td {
     margin: 3px 0px 0px 3px;
 }
 
+caption {
+    padding: 7px;
+    border-bottom: solid 3px #b6b6b6;
+}
+
 
 
 @media (max-width: 500px) {
@@ -426,5 +431,9 @@ td {
     border-top: none;
     margin: 0px;
     padding: 6px;
+    }
+    caption {
+        color: #f5f5f5;
+        border-bottom: solid 3px #444444;
     }
 }
