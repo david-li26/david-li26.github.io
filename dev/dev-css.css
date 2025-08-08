@@ -27,9 +27,10 @@
     background-color: #ffffff;
 }
 
-#menubar p {
+#menubar h1 {
     padding: 15px;
-    font-size: 22px;
+    font-weight: 400;
+    font-size: 26px;
 }
 
 body {
@@ -264,7 +265,7 @@ td {
 
 
 @media (max-width: 500px) {
-    #menubar p {
+    #menubar h1 {
         padding: 15px;
         font-size: 28px;
     }
