@@ -1,0 +1,45 @@
+:root {
+    --border-colour-white: #dadada;
+}
+
+#truth_table {
+    border: 3px solid var(--border-colour-white);
+    border-radius: 10px;
+    margin: 0px;
+    padding: 0px;
+    flex-shrink: 0;
+    max-width: 400px;
+    min-width: 300px;
+    align-self: flex-start;
+}
+
+#bmi-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Mozilla Text', sans-serif;
+}
+
+#truth_table > table > thead > tr> .left {
+    border: 3px solid var(--border-colour-white);
+    border-left: none;
+    border-top: none;
+    margin: 0px;
+    padding: 6px;
+}
+
+#truth_table > table > tbody > tr > .right {
+    border-right: none;
+}
+
+td {
+    border: 3px solid var(--border-colour-white);
+    padding: 10px;
+    border-left: none;
+    width: 100px;
+    text-align: center;
+    font-family: 'Mozilla Text', sans-serif;
+}
+
+.row {
+    display: flex;
+}

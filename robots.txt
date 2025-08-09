@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://david-li26.github.io/bmi-calculator/sitemap.xml
+Sitemap: https://david-li26.github.io/sitemap.xml
