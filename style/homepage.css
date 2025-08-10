@@ -1,0 +1,122 @@
+body, html {
+    background-color: #ebebeb;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+}
+
+a {
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+    color: #262626;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#menubar {
+    width: 100vw;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    padding-left: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+}
+
+#menubar > h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 30px;
+}
+
+#welcome {
+    display: flex;
+    width: 100vw;
+    color: #262626;
+    transition: background-size 0.3s ease-in-out;
+    background-size: 100%;
+    align-items: center;
+    padding-left: 56px;
+    background-position-x: center;
+    background-position-y: center;
+    background-repeat: no-repeat;
+    font-size: clamp(10px, 3.5vw, 30px);
+    height: 50vh;
+    background-image: url('media/background-light.webp');
+    font-family: 'Montserrat', sans-serif;
+}
+
+#welcome > h2 {
+    font-weight: 300;
+    font-size: clamp(20px, 6vw, 40px);
+    margin: 0;
+}
+
+#disclaimer {
+    position: fixed;
+    transform: translateY(-95px);
+    transition: transform 0.6s ease-in-out;
+    z-index: 1000;
+    width: calc(100% - 20px);
+    height: 60px;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    font-size: 17px;
+    justify-content: center;
+    box-shadow: #464646 0px 3px 10px;
+    border-radius: 10px;
+    border: #cfcfcf 2px solid;
+    font-family: 'Mozilla Text', sans-serif;
+    margin: 10px;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    #menubar > h1 {
+        font-size: 22px;
+    }
+
+    #menubar {
+        height: 55px;
+    }
+
+    #disclaimer {
+        font-size: 14px;
+        height: 45px;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    body, html {
+        background-color: #121212;
+    }
+
+    #menubar {
+        background-color: #1e1e1e;
+    }
+
+    #menubar > h1 {
+        color: #ffffff;
+    }
+
+    #welcome {
+        background-image: url('media/background-dark.webp');
+        color: #ffffff;
+    }
+
+    #disclaimer {
+        background-color: #2c2c2c;
+        color: #ffffff;
+        border: 2px solid #3c3c3c;
+        box-shadow: #1a1a1a 0px 3px 10px;
+    }
+    a {
+        color: #f5f5f5;
+        text-decoration: none;
+    }
+}
