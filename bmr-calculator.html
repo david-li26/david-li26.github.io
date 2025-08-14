@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="canonical" href="https://david-li26.github.io/bmrcalculator.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcura BMR Calculator – Estimate your BMR</title>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/styles/media/pwa-icon.png" sizes="1024x1024">
+    <meta name="description" content="Use Calcura's free BMR calculator to estimate your Basal Metabolic Rate and understand your daily energy needs. Fast, accurate, and easy to use.">
+    <meta name="robots" content="index, follow">
+    <link rel="apple-touch-icon" href="/styles/media/pwa-icon.png" sizes="1024x1024">
+    <link rel="icon" type="image/webp" href="/styles/media/calcura-icon-menubar.webp" sizes="40x40">
+    <script nonce="inline-bypass" type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Calcura BMR Calculator",
+      "url": "https://david-li26.github.io/bmr-calculator.html",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "All",
+      "description": "Estimate your Basal Metabolic Rate with Calcura's free BMR calculator."
+    }
+    </script>
+    <script async src="/scripts/global.js"></script>
+    <script defer src="/scripts/bmr-calculator.js"></script>
+    <link rel="stylesheet" href="/styles/default.css">
+    <link rel="stylesheet" href="/styles/bmr-calculator.css">
+</head>
+<body>
+    <div id="menubar">
+        <img loading="lazy" src="/styles/media/calcura-icon-60x60.webp" width="40px" height="40px" alt="Calcura Icon" id="calcura-icon">
+        <h1>Calcura <span>BMR Calculator</span></h1>
+    </div>
+    <div id="wrap">
+        <div class="calculator-box">
+            <div class="top-bar">
+                <h2>Details</h2>
+            </div>
+            <div class="prompts">
+                <div class="row1">
+                    <input type="number" inputmode="numeric" id="age" placeholder="Age">
+                    <input type="number" id="height" inputmode="numeric" placeholder="Height (cm)">
+                    <input type="number" id="weight" inputmode="numeric" placeholder="Weight (kg)"> 
+                </div>
+                <div class="row2">
+                    <label for="gender" class="name">Gender:</label>
+                    <select id="gender" name="gender">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                    <label for="formula" class="name">Formula:</label>
+                    <select id="formula" name="formula">
+                        <option value="Mifflin-St Jeor">Mifflin-St Jeor</option>
+                        <option value="Harris-Benedict">Harris-Benedict</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="result-box">
+            <div class="top-bar">
+                <h2>Results</h2>
+            </div>
+            <div>
+                <p style="font-weight: 700;">Your BMR is: <span id="results">?</span></p>
+                <button id="copy-button">Copy Results</button>
+            </div>
+        </div>
+        <div class="information">
+            <h2>What is BMR?</h2>
+            <h3>An Introduction to BMR</h3>
+            <p><em>BMR (Basal Metabolic Rate)</em>, is the number of calories your body needs to perform basic functions at rest, like breathing, circulation, and cell production. Your BMR can be influenced by several factors such as age, weight, height, and gender, and it serves as the foundation for your daily energy needs.</p>
+            <h3>Why is BMR important?</h3>
+            <p>Knowing your BMR helps you make smarter decisions about your nutrition and lifestyle. Whether you're aiming to lose weight, gain muscle, or simply maintain your current health, understanding your calorie needs is the first step toward taking control of your goals.</p>
+            <h2>How do I gain/lose weight using my BMR?</h2>
+            <p>You can use your BMR to calculate how many calories to eat while on your weight loss/gain journey. To calculate, formulas have been provided for you.</p>
+            <dl>
+                <dt>For weight loss:</dt>
+                <dd>Multiply your BMR by 0.8 to get the number of calories you should consume daily to lose weight.</dd>
+                <dt>For weight gain:</dt>
+                <dd>Multiply your BMR by 1.2 to get the number of calories to consume daily to gain weight.</dd>
+            </dl>
+            <p><b>Remember, this is a general guideline and not an accurate representation of the amount of calories to consume.</b></p>
+            <h2>How accurate is BMR?</h2>
+            <p>We usually calculate using formulas, which are not always accurate. If you want the most accurate results, checking with a doctor would be the most reasonable option. Among the available formulas, the <b>Mifflin-St Jeor Formula</b> would be the best among healthy adults. Especially because it accounts for many factors accurately compared to older formulas.</p>
+            <h2>Tips to Boost your BMR</h2>
+            <ul>
+                <li><strong>Build muscle:</strong> Strength training increases your resting metabolic rate.</li>
+                <li><strong>Stay active:</strong> Regular movement throughout the day helps keep your metabolism engaged.</li>
+                <li><strong>Eat enough protein:</strong> Protein-rich foods require more energy to digest and support muscle maintenance.</li>
+                 <li><strong>Get quality sleep:</strong> Poor sleep can negatively affect hormones that regulate metabolism.</li>
+                 <li><strong>Avoid crash diets:</strong> Severely restricting calories can slow down your BMR over time.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

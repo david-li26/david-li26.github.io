@@ -1,8 +1,19 @@
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/styles/fonts/montserrat.woff2') format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
 body, html {
     background-color: #ebebeb;
     margin: 0px;
     padding: 0px;
+    font-family: 'Montserrat', sans-serif;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 a {
@@ -31,6 +42,7 @@ a:hover {
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
     font-size: 30px;
+    margin-left: 10px;
 }
 
 #welcome {
@@ -53,7 +65,7 @@ a:hover {
 #welcome > h2 {
     font-weight: 300;
     font-size: clamp(20px, 6vw, 40px);
-    margin: 0;
+    margin: 0px;
 }
 
 #disclaimer {
@@ -76,13 +88,19 @@ a:hover {
     text-align: center;
 }
 
-@media (max-width: 600px) {
+#calcura-icon {
+    filter: brightness(2) saturate(1.2);
+}
+
+@media (max-width: 500px) {
     #menubar > h1 {
-        font-size: 22px;
+        font-size: 26px;
+        margin-left: 7px;
     }
 
     #menubar {
         height: 55px;
+        padding-left: 10px;
     }
 
     #disclaimer {
@@ -94,6 +112,10 @@ a:hover {
 @media (prefers-color-scheme: dark) {
     body, html {
         background-color: #121212;
+    }
+
+    #calcura-icon {
+        filter: brightness(1)
     }
 
     #menubar {

@@ -1,51 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-WR8GDP2YEF"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-WR8GDP2YEF');
-</script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Mozilla+Text:wght@200..700&family=Nata+Sans:wght@100..900&display=swap" rel="stylesheet">
+    <script nonce="inline-bypass">
+        let preferDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (preferDark) {
+            let link = document.createElement('link');
+            link.rel = 'preload';
+            link.href = '/styles/media/background-dark.webp';
+            link.as = 'image';
+            document.head.appendChild(link);
+        } else {
+            let link = document.createElement('link');
+            link.rel = 'preload';
+            link.href = '/styles/media/background-light.webp';
+            link.as = 'image';
+            document.head.appendChild(link);  
+        }
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR8GDP2YEF"></script>
+    <script nonce="inline-bypass">
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WR8GDP2YEF');
+    </script>
     <meta charset="UTF-8">
+    <link rel="manifest" href="/manifest.json">
     <link rel="canonical" href="https://david-li26.github.io/">
-    <meta name="description" content="Calcura offers a suite of health calculators including BMI, (more coming soon!). Empower your wellness journey with health tools.">
-    <link rel="icon" type="image/png" href="/style/media/calcura_icon.png">
+    <meta name="description" content="Use Calcura's free health calculators including BMI, BMR, and calorie needs. Track your wellness goals with fast, accurate tools.">
+    <link rel="icon" type="image/webp" href="/styles/media/calcura-icon-menubar.webp" sizes="40x40">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calcura – Calculate Health Properties</title>
     <script defer src="/scripts/script.js"></script>
-    <link rel="stylesheet" href="/style/homepage.css">
+    <link rel="stylesheet" href="/styles/default.css">
     <meta name="keywords" content="health calculators, BMI calculator, BMR calculator, calorie calculator, nutrition tools, fitness calculators, wellness suite, body metrics, Calcura">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="Calcura – Health Calculators">
     <meta property="og:description" content="Access a suite of health calculators including BMI, BMR, and calorie needs. Calcura helps you understand your body and wellness goals.">
-    <meta property="og:image" content="https://david-li26.github.io/style/media/calcura_icon.png">
+    <meta property="og:image" content="https://david-li26.github.io/styles/media/calcura-icon.png">
     <meta property="og:url" content="https://david-li26.github.io">
     <meta property="og:type" content="website">
+    <link rel="apple-touch-icon" href="/styles/media/pwa-icon.png" sizes="1024x1024">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Calcura – Health Calculators">
     <meta name="twitter:description" content="Explore Calcura's suite of health calculators to support your wellness journey.">
-    <meta name="twitter:image" content="https://david-li26.github.io/style/media/calcura_icon.png"> 
+    <meta name="twitter:image" content="https://david-li26.github.io/styles/media/calcura-icon.png"> 
+    <script nonce="inline-bypass" type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Calcura BMR Calculator",
+      "url": "https://david-li26.github.io/",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "All",
+      "description": "Find health calculators in Calcura."
+    }
+    </script>
+    <script async src="/scripts/global.js"></script>
 </head>
 <body>
     <div id="disclaimer">
-        <p>Welcome!</p>
+        <p>👋 Welcome to Calcura!</p>
     </div>
     <div id="menubar">
-        <img style="margin: px;" src="/style/media/calcura_icon.png" width="40px" height="40px" alt="Calcura Icon">
-        <h1 style="margin-left: 10px;">Calcura</h1>
+        <img style="margin: px;" src="/styles/media/calcura-icon-60x60.webp" width="40px" height="40px" alt="Calcura Icon" id="calcura-icon">
+        <h1>Calcura</h1>
     </div>
     <div id="welcome">
-        <h2>Welcome to Calcura.</h2>
+        <h2><strong>Precision</strong>, not persuasion.</h2>
     </div>
     <div>
-        <a href="/archive/calculators/bmicalculator.html">BMI Calculator (Click me)</a>
+        <a href="" style="font-weight: bold; font-size: 1.2em; color: #0077cc;">Try Our Free BMI Calculator – Fast & Easy to Use</a>
+        <a href="/bmr-calculator.html" style="font-weight: bold; font-size: 1.2em; color: #0077cc;">And Also Try The BMR Calculator</a>
     </div>
 </body>
 </html>

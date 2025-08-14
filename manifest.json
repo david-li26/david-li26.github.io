@@ -1,0 +1,15 @@
+{
+  "name": "Calcura",
+  "short_name": "Calcura",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/styles/media/pwa-icon.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    }
+  ]
+}
