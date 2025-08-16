@@ -46,12 +46,13 @@ code {
 }
 
 details:open {
-    width: 100%;
+    width: 600px !important;
     max-width: 600px;
     background-color: #e8e8e8;
     border: solid #c8c7c7;
     color: #000000;
     height: auto;
+    min-width: 900px;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
