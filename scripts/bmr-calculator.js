@@ -59,3 +59,26 @@ copyButton.addEventListener('click', () => {
         alert('Failed to copy BMR value: ' + err);
     })
 });
+
+const detailsList = document.querySelectorAll('details');
+const information = document.getElementById('information');
+
+function updateLayout() {
+  const anyOpen = Array.from(detailsList).some(d => d.open);
+  const isWide = window.innerWidth >= 500;
+
+  information.style.flexDirection = isWide
+    ? (anyOpen ? 'column' : 'row')
+    : 'column'; // always column on small screens
+}
+
+// Listen for toggle events
+detailsList.forEach((detail) => {
+  detail.addEventListener('toggle', updateLayout);
+});
+
+// Listen for screen resize
+window.addEventListener('resize', updateLayout);
+
+// Run once on page load
+updateLayout();
