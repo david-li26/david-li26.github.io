@@ -1,0 +1,52 @@
+body {
+    transition: filter 0.3s ease-out;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+}
+
+#wrap {
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+#tabs {
+    width: 100%;
+    height: 55px;
+    max-width: 750px;
+    margin: 10px 10px  0px 10px;
+    display: flex;
+    min-width: none;
+    border: solid #b8b8b8;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+#globalsettings {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 60%);
+  width: 90%;
+  max-width: 720px;
+  height: 95%;
+  padding: 20px;
+  background-color: #ebebeb;
+  border: solid #b8b8b8;
+  border-radius: 10px;
+  box-sizing: border-box;
+  z-index: 10000;
+  transition: transform 0.3s ease;
+}
+
+#globalsettings.active {
+  transform: translate(-50%, -50%);
+}
+
+.title {
+    font-size: 20px;
+}
