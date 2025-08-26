@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-au">
 <head>
     <link rel="preload" href="/styles/fonts/montserrat.woff2" as="font" type="font/woff2" crossorigin>
     <meta charset="UTF-8">
@@ -10,42 +10,126 @@
     <script defer src="metabolic.js"></script>
 </head>
 <body>
+    <div id="disclaimer">
+        <p>Mobile support is not optimised.</p>
+    </div>
     <div id="globalsettings">
         <span class="title">Settings</span>
-        <p style="margin-left: 20px;">You can control your settings here. They will be stored in localStorage</p>
+        <p style="margin-left: 20px;">
+            You can control your settings here. They will be stored in localStorage.
+            <b>This feature is not finished, but localStorage and some settings are implemented.</b>
+        </p>
         <div id="unit-preferences">
             <span class="title">Unit Preferences</span>
             <div class="settings-row">
-                <p>Energy Unit</p>
-                <select class="setting">
-                    <option value="kj">Kilojoules</option>
-                    <option value="cal">Calories</option>
-                    <option value="kcal">Kilocalories</option>
-                </select>
+                <div>
+                    <p>Energy Unit</p>
+                    <select class="setting" id="unit-setting">
+                        <option value="kj">Kilojoules</option>
+                        <option value="kcal">Kilocalories</option>
+                    </select>
+                </div>
+                <div>
+                    <p>Measurement Unit</p>
+                    <select class="setting" id="measure-unit-setting">
+                        <option value="metric">Metric</option>
+                        <option value="imperial">Imperial</option>
+                    </select>
+                </div>
             </div>
         </div>
     </div>
-    <div id="wrap">
+    <div class="wrap">
         <div id="menubar">
-            <a href="/" id="link-to-menu"><img loading="lazy" src="/styles/media/calcura-icon-60x60.webp" width="40px" height="40px" alt="Calcura Icon" id="calcura-icon"></a>
+            <a href="/" id="link-to-menu">
+                <img loading="lazy" src="/styles/media/calcura-icon-60x60.webp" width="40px" height="40px" alt="Calcura Icon" id="calcura-icon">
+            </a>
             <h1>Metabolic Calculator</h1>
         </div>
         <div id="firstrow">
             <div id="tab-panel">
                 <div id="tabs">
-                    <div class="tab">BMR</div>
-                    <div class="tab">RMR</div>
+                    <div class="tab" id="bmrTab">
+                        BMR
+                        <span class="tooltip" role="tooltip" id="bmr-tooltip">BMR is the minimum calories your body consumes.</span>
+                    </div>
+                    <div class="tab" id="rmrTab">
+                        RMR
+                        <span class="tooltip" role="tooltip" id="rmr-tooltip">RMR is the minimum calories your body consumes, including your minimal activities.</span>
+                    </div>
+                    <div class="tab" id="tdeeTab">
+                        TDEE
+                        <span class="tooltip" role="tooltip" id="tdee-tooltip">TDEE is the minimum calories your body consumes, including your daily activities.</span>
+                    </div>
                 </div>
             </div>
-            <button id="settings-button" onclick="updateSettings()" aria-label="Open Settings">
-                <svg id="settings-logo" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#a8a8a8"><path d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm112-260q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Z"/></svg>!!WIP!!
-            </button>
+            <div id="settings-button-wrap">
+                <button id="settings-button" onclick="updateSettings()" aria-label="Open Settings">
+                    <svg id="settings-logo" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#a8a8a8">
+                        <path d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm112-260q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Z"/>
+                    </svg>
+                </button>
+            </div>
         </div>
         <div id="input-panel">
-            <div id="bmr-input">
-                <input type="number" id="bmr-weight" inputmode="numeric" placeholder="Weight 10kg - 120kg">
-                <input type="number" id="bmr-height" inputmode="numeric" placeholder="Height 10cm - 240cm">
-                <input type="number" id="bmr-age" inputmode="numeric" placeholder="Age 10 - 120">
+            <h2 class="title">Details</h2>
+            <div id="bmr-input" class="bmr">
+                <div class="column">
+                    <input type="number" id="bmr-weight" inputmode="numeric" placeholder="Weight 20kg – 120kg">
+                    <input type="number" id="bmr-age" inputmode="numeric" placeholder="Age 18 – 80">
+                    <div id="height-conditional">
+                        <input type="number" id="bmr-height" inputmode="numeric" placeholder="Height 50cm – 240cm">
+                        <span class="tooltip" role="tooltip" id="height-disabled-tooltip">Height is not required for the Schofield Equation.</span>
+                    </div>
+                </div>
+                <div class="column">
+                    <label for="bmr-gender">Gender:</label>
+                    <select name="bmr-gender" id="bmr-gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                    <label for="bmr-formula">Formula:</label>
+                    <select name="bmr-formula" id="bmr-formula">
+                        <option value="mifflinstjeor">Mifflin-St Jeor</option>
+                        <option value="harrisbenedict">Harris-Benedict</option>
+                        <option value="schofield">Schofield Equation</option>
+                    </select>
+                </div>
+                <div class="tdee">
+                    <label for="tdee-energy">Activity Level:</label>
+                    <select name="tdee-energy" id="tdee-energy">
+                        <option value="sedentary">Sedentary</option>
+                        <option value="light">Lightly Active</option>
+                        <option value="moderate">Moderately Active</option>
+                        <option value="very">Very Active</option>
+                        <option value="extra">Extra Active</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div id="second-row-wrap">
+            <div id="results-panel">
+                <h2 class="title">Results</h2>
+                <div id="results-box">
+                    <div id="bmr-results-box">
+                        <p class="bmr">Your estimated BMR is:</p><p class="rmr">Your estimated RMR is:</p><p class="tdee">Your estimated TDEE is:</p>
+                        <div id="results-text">
+                            VAR unit/day 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="suggestions-panel">
+                <h2 class="title">Suggestions</h2>
+                <p class="title bmr" style="font-size: 18px;">With your BMR, you can:</p><p class="title rmr" style="font-size: 18px;">With your RMR, you can:</p><p class="title tdee" style="font-size: 18px;">With your TDEE, you can:</p>
+                <ul>
+                    <li><strong>Lose Weight:</strong> Eat <span id="bmr-lw-text">VAR unit/day</span> to lose weight.</li>
+                    <li><strong>Gain Weight:</strong> Eat <span id="bmr-gw-text">VAR unit/day</span> to gain weight.</li>
+                </ul>
+                <div class="title">
+                    <label for="bmr-offset-range-suggestions" aria-live="polite">Adjustment:&nbsp;<span id="suggestions-percentage-bmr">10%</span></label>
+                    <input style="height: 0px;" value="10" type="range" min="5" max="25" step="5" id="bmr-offset-range-suggestions" name="bmr-offset">
+                </div>
             </div>
         </div>
     </div>

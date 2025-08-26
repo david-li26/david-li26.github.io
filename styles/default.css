@@ -76,6 +76,7 @@ a:hover {
     z-index: 1000;
     width: calc(100% - 20px);
     height: 60px;
+    will-change: transform;
     background-color: #f5f5f5;
     display: flex;
     align-items: center;
