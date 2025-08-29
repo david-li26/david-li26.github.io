@@ -8,53 +8,67 @@
     --border-colour: #d7d7d7;
     --panel-border-radius: 10px;
     --inner-border-radius: 6px;
+    --background-colour: #f5f5f5;
+    --dark-background-colour: #e1e1e1;
 }
 
 body {
     transition: filter 0.3s ease-out;
     z-index: 1;
+    background-color: var(--background-colour);
     width: 100vw;
     height: 100vh;
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+}
+
 #disclaimer {
     position: fixed;
-    transform: translateY(-95px);
+    transform: translateY(-95px) translateX(-50%);
     transition: transform 0.6s ease-in-out;
     z-index: 1000;
     width: calc(100% - 20px);
+    max-width: 1000px;
+    left: calc(50% - 10px);
     height: 60px;
     will-change: transform;
     background-color: #f5f5f5;
     display: flex;
     align-items: center;
-    font-size: 17px;
     justify-content: center;
     box-shadow: #464646 0px 3px 10px;
     border-radius: 10px;
     border: #cfcfcf 2px solid;
     font-family: 'Mozilla Text', sans-serif;
     margin: 10px;
-    font-size: 13px;
+    font-size: clamp(12px, 2vw, 16px);
     font-family: 'Montserrat', sans-serif;
     text-align: center;
 }
 
 #disclaimer.show {
-    transform: translateY(0);
+    transform: translateY(0) translateX(-50%);
 }
 
 
 .wrap {
-    width: 100vw;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    will-change: filter;
-    box-sizing: border-box;
-    transition: filter 0.3s ease-out;
+  width: 100dvw;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  will-change: filter;
+  transition: filter 0.3s ease-out;
+  overflow: visible;
 }
+
 
 #firstrow {
     width: 100vw;
@@ -185,7 +199,7 @@ body {
   border: solid 3px var(--border-colour);
   border-radius: var(--panel-border-radius);
   box-sizing: border-box;
-  z-index: 10000;
+  z-index: 5;
   transition: transform 0.3s ease;
 }
 
@@ -328,10 +342,20 @@ select.setting {
     background-color: #a8a8a8;
 }
 
-.disabled-add-caution:hover .tooltip {
+.disabled-add-caution:hover .tooltip, .tooltip-hover {
     visibility: visible;
     opacity: 1;
     transform: translateY(0px) scale(1);
+}
+
+.tooltip[id="offset-tooltip"] {
+    top: 676px;
+    font-size: 15px;
+    width: 175px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 12px !important;
 }
 
 .tab:hover .tooltip {
@@ -372,4 +396,94 @@ select.setting {
 
 select {
     cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 100vw;
+    box-shadow: 0px 1px 4px #888888;
+    height: 15px;
+    max-width: 20px;
+    border-radius: 3px;
+    background-color: #8e8e8e;
+    transition: max-width 0.2s ease-out, transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    appearance: none;
+    margin: -5px; /* Adjust based on thumb height */
+    width: 100%;
+    border-radius: 0px;
+}
+
+input[type="range"]:hover::-webkit-slider-thumb {  
+    max-width: 25px;
+}
+
+input[type="range"]:active::-webkit-slider-thumb {
+  max-width: 20px;
+  cursor: grabbing;
+  box-shadow: 0px 0.15px 4px #888888;
+  transform: scale(0.85);
+}
+
+
+input[type="range"] {
+    --percent: 50%;
+    cursor: grab;
+    background: linear-gradient(to right, #c8c8c8 0%, #949494 var(--percent), var(--dark-background-colour) var(--percent), var(--dark-background-colour) 100%);
+    appearance: none;
+    border-radius: 5px;
+    border: solid 2px var(--border-colour);
+}
+
+/* 
+    Moving to Preferences
+
+    ##########################
+    ##                      ##
+    ##      Preferences     ##
+    ##        Settings      ##
+    ##                      ##
+    ##########################
+
+*/
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition-duration: 0.01ms !important;
+    }
+}
+
+@media (prefers-contrast: more) {
+    :root {
+        --border-colour: #797979;
+    }
+}
+
+@media (prefers-contrast: more) {
+    :root {
+        --border-colour: #797979;
+    }
+}
+
+@media (max-width: 500px) {
+    #second-row-wrap {
+        flex-direction: column;
+    }
+    #results-panel {
+        width: 100%;
+    }
+    #input-panel > * {
+        flex-direction: column;
+        align-items: center;
+    } 
+    #input-panel {
+        height: fit-content;
+        padding-bottom: 5px;
+    }
+    #suggestions-panel {
+        width: 100%;
+        margin-left: -1px;
+    }
 }

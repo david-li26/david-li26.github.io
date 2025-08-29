@@ -3,7 +3,7 @@ let tabStatus = 'bmr';
 let usingSchofield = false;
 let toggleSettingsValue = false;
 const settingsBlock = document.getElementById('globalsettings');
-const wrap = document.getElementById('wrap');
+const wrap = document.getElementsByClassName('wrap');
 const settingsLogo = document.getElementById('settings-logo');
 const bmrWeight = document.getElementById('bmr-weight');
 const bmrHeight = document.getElementById('bmr-height');
@@ -13,7 +13,15 @@ const formulaElement = document.getElementById('bmr-formula');
 const unitElement = document.getElementById('unit-setting');
 const mUnitElement = document.getElementById('measure-unit-setting');
 const genderElement = document.getElementById('bmr-gender');
-const disclaimer = document.getElementById('disclaimer')
+const disclaimer = document.getElementById('disclaimer');
+const bmr_offset_suggestion = document.getElementById('bmr-offset-range-suggestions');
+
+if (!Math.clamp) {
+  Math.clamp = function(value, min, max) {
+    return Math.min(Math.max(value, min), max);
+  };
+}
+
 
 function reset(all) {
     bmrHeight.value = '';
@@ -37,14 +45,14 @@ disclaimer.addEventListener("click", () => {
     disclaimer.classList.remove('show');
 });
 
-if (window.innerWidth < 500) {
-    showBanner()
-}
+showBanner()
 
 function updateSettings() {
     toggleSettingsValue = !toggleSettingsValue
     settingsBlock.classList.toggle('active', toggleSettingsValue)
-    wrap.style.filter = toggleSettingsValue ? 'blur(1px)':'blur(0px)'
+    for (i = 0; i < wrap.length; i++) {
+        wrap[i].style.filter = toggleSettingsValue ? 'blur(2px)':'blur(0px)'
+    }
     settingsLogo.classList.add('rotate')
     settingsLogo.addEventListener('transitionend', () => {
         settingsLogo.style.transition = 'none'
@@ -62,7 +70,7 @@ function validateInput() {
     let failCount = 0;
 
     function validateMetric() {
-        if (usingSchofield) {
+        if (!usingSchofield) {
             if (bmrWeight.value < 20 || bmrWeight.value > 120) {
                 bmrWeight.style.border = 'solid 2.5px #da0000';
                 failCount++;
@@ -91,7 +99,7 @@ function validateInput() {
     };
 
     function validateImperial() {
-        if (usingSchofield) {
+        if (!usingSchofield) {
             if (bmrWeight.value < 44.1 || bmrWeight.value > 264.6) {
                 bmrWeight.style.border = 'solid 2.5px #da0000';
                 failCount++;
@@ -210,13 +218,14 @@ function changeBMRSuggestions(bmr) {
         bmrResults.textContent = 'Something looks wrong! Check your details.'
     }
     let unit = document.getElementById('unit-setting').value;
-    let percentage = document.getElementById('bmr-offset-range-suggestions').value / 100;
-    percentdisplay.textContent = percentage * 100 + '%';
-    gainWeightBMR.textContent = (bmr + bmr * percentage).toFixed(2) + ' kcal/day';
-    loseWeightBMR.textContent = (bmr - bmr * percentage).toFixed(2) + ' kcal/day';
+    let percentage = bmr_offset_suggestion.value / 100;
+    let roundedPercentage = percentage.toFixed(2)
+    percentdisplay.textContent = (percentage * 100).toFixed(0) + '%';
+    gainWeightBMR.textContent = (bmr + bmr * roundedPercentage).toFixed(2) + ' kcal/day';
+    loseWeightBMR.textContent = (bmr - bmr * roundedPercentage).toFixed(2) + ' kcal/day';
 }
 
-document.getElementById('bmr-offset-range-suggestions').addEventListener('input', () => {
+bmr_offset_suggestion.addEventListener('input', () => {
     if (tabStatus == 'bmr') {
         changeBMRSuggestions(calculateBMR());
     } else if (tabStatus == 'rmr') {
@@ -406,4 +415,37 @@ formulaElement.addEventListener('input', () => {
         usingSchofield = false;
         bmrAge.placeholder = 'Age 18 – 80'
     };
-});a
+});
+
+const slider = document.querySelector('#bmr-offset-range-suggestions');
+
+function updateSlider() {
+    const percent = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
+    slider.style.setProperty('--percent', `${percent}%`);
+}
+
+slider.addEventListener('input', () => {
+    updateSlider()
+});
+
+updateSlider()
+
+const offset_tooltip = document.getElementById('offset-tooltip');
+
+bmr_offset_suggestion.addEventListener('keydown', (e) => {
+  let currentValue = parseFloat(bmr_offset_suggestion.value) || 0;
+
+  if (e.shiftKey) {
+    offset_tooltip.classList.add('tooltip-hover');
+  };
+
+  if (e.shiftKey && e.key === 'ArrowRight') {
+    bmr_offset_suggestion.value = Math.clamp(currentValue + 0.98, 1, 25).toFixed(2);
+  } else if (e.shiftKey && e.key === 'ArrowLeft') {
+    bmr_offset_suggestion.value = Math.clamp(currentValue - 0.98, 1, 25).toFixed(2);
+  }
+});
+
+bmr_offset_suggestion.addEventListener('keyup', (e) => {
+  offset_tooltip.classList.remove('tooltip-hover');
+})

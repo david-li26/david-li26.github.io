@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calcura Health Metabolic Calculator</title>
     <link rel="stylesheet" href="/styles/default.css">
+    <meta name="author" content="David Li"/>
     <link rel="stylesheet" href="metabolic.css">
     <script defer src="metabolic.js"></script>
 </head>
 <body>
     <div id="disclaimer">
-        <p>Mobile support is not optimised.</p>
+        <p>All information portrayed in this page are all brief estimates and do not reflect your actual health in any sort of way.</p>
     </div>
     <div id="globalsettings">
         <span class="title">Settings</span>
@@ -39,7 +40,7 @@
             </div>
         </div>
     </div>
-    <div class="wrap">
+    <div data-panel="bmr-rmr-tdee" class="wrap">
         <div id="menubar">
             <a href="/" id="link-to-menu">
                 <img loading="lazy" src="/styles/media/calcura-icon-60x60.webp" width="40px" height="40px" alt="Calcura Icon" id="calcura-icon">
@@ -128,7 +129,8 @@
                 </ul>
                 <div class="title">
                     <label for="bmr-offset-range-suggestions" aria-live="polite">Adjustment:&nbsp;<span id="suggestions-percentage-bmr">10%</span></label>
-                    <input style="height: 0px;" value="10" type="range" min="5" max="25" step="5" id="bmr-offset-range-suggestions" name="bmr-offset">
+                    <input style="height: 0px;" value="10" type="range" min="1" max="25" step="0.01" id="bmr-offset-range-suggestions" name="bmr-offset">
+                    <span class="tooltip" role="tooltip" id="offset-tooltip">⇧ Step: +1.00</span>
                 </div>
             </div>
         </div>
