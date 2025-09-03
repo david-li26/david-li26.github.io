@@ -34,7 +34,7 @@
     position: sticky;
     transition: height 0.3s ease-out;
     top: 0;
-    z-index: 2;
+    z-index: 10;
 }
 
 #menubar > div > h1 {
