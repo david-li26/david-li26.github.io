@@ -3,7 +3,7 @@ let tabStatus = 'bmr';
 let usingSchofield = false;
 let toggleSettingsValue = false;
 const settingsBlock = document.getElementById('globalsettings');
-const wrap = document.getElementsByClassName('wrap');
+const wrap = document.getElementById('wrap');
 const settingsLogo = document.getElementById('settings-logo');
 const bmrWeight = document.getElementById('bmr-weight');
 const bmrHeight = document.getElementById('bmr-height');
@@ -15,6 +15,37 @@ const mUnitElement = document.getElementById('measure-unit-setting');
 const genderElement = document.getElementById('bmr-gender');
 const disclaimer = document.getElementById('disclaimer');
 const bmr_offset_suggestion = document.getElementById('bmr-offset-range-suggestions');
+const details = document.getElementsByTagName('details');
+const articles = document.getElementById('articles');
+const menubar = document.getElementById('menubar');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 0) {
+        menubar.classList.add('minimise');
+    } else {
+        menubar.classList.remove('minimise');
+    };
+});
+
+for (let i = 0; i < details.length; i++) {
+    details[i].addEventListener('toggle', function () {
+        let openCount = 0;
+
+        for (let j = 0; j < details.length; j++) {
+            if (details[j].open) {
+                openCount++;
+            }
+        }
+
+        if (openCount === 0) {
+            articles.classList.add('row');
+            articles.classList.remove('column');
+        } else {
+            articles.classList.add('column');
+            articles.classList.remove('row');
+        }
+    });
+};
 
 if (!Math.clamp) {
   Math.clamp = function(value, min, max) {
@@ -72,73 +103,73 @@ function validateInput() {
     function validateMetric() {
         if (!usingSchofield) {
             if (bmrWeight.value < 20 || bmrWeight.value > 120) {
-                bmrWeight.style.border = 'solid 2.5px #da0000';
+                bmrWeight.classList.add('invalid');
                 failCount++;
             } else {
-                bmrWeight.style.border = '';
+                bmrWeight.classList.remove('invalid');
             }
         } else {
             if (bmrWeight.value < 5 || bmrWeight.value > 120) {
-                bmrWeight.style.border = 'solid 2.5px #da0000';
+                bmrWeight.classList.add('invalid');
                 failCount++;
             } else {
-                bmrWeight.style.border = '';
+                bmrWeight.classList.remove('invalid');
             }
         }
 
         if (bmrHeight.value < 50 || bmrHeight.value > 240) {
             if (!height_conditional_object.classList.contains('disabled-add-caution')) {
-                bmrHeight.style.border = 'solid 2.5px #da0000';
+                bmrHeight.classList.add('invalid');
                 failCount++;
             } else {
-                bmrHeight.style.border = '';
+                bmrHeight.classList.remove('invalid');
             }
         } else {
-            bmrHeight.style.border = '';
+            bmrHeight.classList.remove('invalid');
         };
     };
 
     function validateImperial() {
         if (!usingSchofield) {
             if (bmrWeight.value < 44.1 || bmrWeight.value > 264.6) {
-                bmrWeight.style.border = 'solid 2.5px #da0000';
+                bmrWeight.classList.add('invalid');
                 failCount++;
             } else {
-                bmrWeight.style.border = '';
+                bmrWeight.classList.remove('invalid');
             }
         } else {
             if (bmrWeight.value < 44.1 || bmrWeight.value > 264.6) {
-                bmrWeight.style.border = 'solid 2.5px #da0000';
+                bmrWeight.classList.add('invalid');
                 failCount++;
             } else {
-                bmrWeight.style.border = '';
+                bmrWeight.classList.remove('invalid');
             }
         }
 
         if (bmrHeight.value < 19.7 || bmrHeight.value > 94.5) {
             if (!height_conditional_object.classList.contains('disabled-add-caution')) {
-                bmrHeight.style.border = 'solid 2.5px #da0000';
+                bmrHeight.classList.add('invalid');
                 failCount++;
             } else {
-                bmrHeight.style.border = '';
+                bmrHeight.classList.remove('invalid');
             }
         } else {
-            bmrHeight.style.border = '';
+            bmrHeight.classList.remove('invalid');
         };
     };
     if (usingSchofield) {
         if (bmrAge.value < 3 || bmrAge.value > 60) {
-            bmrAge.style.border = 'solid 2.5px #da0000';
+            bmrAge.classList.add('invalid');
             failCount++;
         } else {
-            bmrAge.style.border = '';
+            bmrAge.classList.remove('invalid');
         }
     } else {
         if (bmrAge.value < 18 || bmrAge.value > 80) {
-            bmrAge.style.border = 'solid 2.5px #da0000';
+            bmrAge.classList.add('invalid');
             failCount++;
         } else {
-        bmrAge.style.border = '';
+        bmrAge.classList.remove('invalid');
         }
     };
 
@@ -340,11 +371,14 @@ const tdeeObjects = document.getElementsByClassName('tdee');
 const bmrTab = document.getElementById('bmrTab');
 const rmrTab = document.getElementById('rmrTab');
 const tdeeTab = document.getElementById('tdeeTab');
-const tabs = [bmrTab, rmrTab, tdeeTab];
+const macrosTab = document.getElementById('macrosTab');
+const bmrRmrTdeeInnerWrap = document.getElementById('bmr-rmr-tdee-panels')
+const tabs = [bmrTab, rmrTab, tdeeTab, macrosTab];
+const macros = document.getElementById('macro-wrap');
 
 // 0: bmr 1: rmr 2: tdee
 function changeTabStyle(tab) {
-    let tabs = [bmrTab, rmrTab, tdeeTab];
+    let tabs = [bmrTab, rmrTab, tdeeTab, macrosTab];
     tabs.forEach((cTab, index) => {
         cTab.classList.toggle('active-tab', index === tab);
     });
@@ -361,7 +395,9 @@ function switchToRMR() {
     for (i = 0; i < tdeeObjects.length; i++) {
         tdeeObjects[i].style.display = 'none';
     }
-    changeTabStyle(1)
+    bmrRmrTdeeInnerWrap.classList.remove('hidden');
+    macros.classList.add('hidden');
+    changeTabStyle(1);
 }
 
 function switchToBMR() {
@@ -375,7 +411,9 @@ function switchToBMR() {
     for (i = 0; i < tdeeObjects.length; i++) {
         tdeeObjects[i].style.display = 'none';
     }
-    changeTabStyle(0)
+    bmrRmrTdeeInnerWrap.classList.remove('hidden');
+    macros.classList.add('hidden');
+    changeTabStyle(0);
 };
 
 function switchToTDEE() {
@@ -389,7 +427,15 @@ function switchToTDEE() {
     for (i = 0; i < tdeeObjects.length; i++) {
         tdeeObjects[i].style.display = '';
     }
-    changeTabStyle(2)
+    bmrRmrTdeeInnerWrap.classList.remove('hidden');
+    macros.classList.add('hidden');
+    changeTabStyle(2);
+};
+
+function switchToMacros() {
+    macros.classList.remove('hidden');
+    bmrRmrTdeeInnerWrap.classList.add('hidden');
+    changeTabStyle(3);
 };
 
 switchToBMR()
@@ -401,6 +447,7 @@ tabs.forEach((tab) => {
 bmrTab.addEventListener('click', switchToBMR);
 tdeeTab.addEventListener('click', switchToTDEE);
 rmrTab.addEventListener('click', switchToRMR);
+macrosTab.addEventListener('click', switchToMacros);
 
 document.getElementById('tdee-energy').addEventListener('input', updateBMR);
 
@@ -448,4 +495,7 @@ bmr_offset_suggestion.addEventListener('keydown', (e) => {
 
 bmr_offset_suggestion.addEventListener('keyup', (e) => {
   offset_tooltip.classList.remove('tooltip-hover');
-})
+});
+
+const menubarHeader = document.getElementById('menubarHeader');
+const back_to_home_indicator = document.getElementById('')
